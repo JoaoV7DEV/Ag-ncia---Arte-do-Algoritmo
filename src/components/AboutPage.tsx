@@ -154,10 +154,10 @@ export const AboutPage: React.FC = () => {
               <div className="p-6 rounded-2xl bg-[#272727] border border-white/10 space-y-2">
                 <div className="flex items-center gap-2 text-white font-bold text-sm">
                   <CheckCircle2 className="w-4 h-4 text-[#00FFFF]" />
-                  <span>Preço justo e acessível a empreendedores</span>
+                  <span>Investimento sob medida e transparente</span>
                 </div>
                 <p className="text-xs text-gray-400">
-                  Soluções a partir de R$ 500 com escopo claro e cronograma rigorosamente cumprido.
+                  Projetos com escopo e cronograma claros, adaptados ao porte e ao momento do seu negócio.
                 </p>
               </div>
             </div>

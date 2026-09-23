@@ -1,495 +1,272 @@
 import React, { useState } from 'react';
-import { FLAGSHIP_PROJECT, AGENCY_INFO } from '../data/agencyData';
 import {
-  ExternalLink,
-  ShieldCheck,
-  CheckCircle,
-  Check,
-  Smartphone,
-  Users,
-  Car,
-  TrendingUp,
-  MessageCircle,
-  QrCode,
-  Layers,
-  ChevronRight,
+  Maximize2,
+  CheckCircle2,
+  MousePointer,
+  Quote,
+  ArrowRight,
+  Sparkles
 } from 'lucide-react';
+import { FLAGSHIP_PROJECT, AGENCY_INFO } from '../data/agencyData';
+import { ZeroOneCaseButton } from './ZeroOneCaseButton';
+import { PageView } from './Navbar';
 
-export const FeaturedCaseStudy: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'home' | 'driver' | 'passenger' | 'rebrand'>('home');
+interface FeaturedCaseStudyProps {
+  onNavigate?: (page: PageView, anchor?: string) => void;
+}
+
+export const FeaturedCaseStudy: React.FC<FeaturedCaseStudyProps> = ({ onNavigate }) => {
+  const [isSiteScrolled, setIsSiteScrolled] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  const handleOpenCase = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    if (onNavigate) {
+      onNavigate('projeto-01s');
+    } else {
+      window.location.hash = '#projetos/01s-mobilidade';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
-    <section id="case-01s" className="py-24 bg-[#18181B] border-t border-white/5 relative overflow-hidden">
-      {/* Glow effect */}
-      <div className="absolute -top-32 right-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
+    <section id="case-01s" className="w-full my-8">
+      {/* Section Header */}
+      <div className="border-b border-white/10 pb-4 mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-xs font-mono text-[#4EA238] tracking-wider uppercase font-semibold">
+              CASE SELECIONADO • 01S MOBILIDADE
+            </span>
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-950/70 border border-emerald-500/40 text-emerald-300 text-[10px] font-mono font-semibold">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#4EA238] animate-pulse" />
+              Identidade & Site Desenvolvidos
+            </span>
+          </div>
+          <h3 className="text-2xl sm:text-3xl font-bold text-white">
+            01S Mobilidade Urbana
+          </h3>
+        </div>
+        <p className="text-sm text-gray-400 max-w-md text-left sm:text-right">
+          Do Rebranding à Plataforma Web Completa: Construindo uma marca de autoridade no transporte de passageiros.
+        </p>
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-semibold mb-3">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              CASE DE SUCESSO EM DESTAQUE
+      {/* Level 2 Medium-Depth Card Structure */}
+      <div className="rounded-3xl bg-[#141416] border border-white/10 hover:border-[#4EA238]/40 transition-all duration-300 shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
+        {/* Left Column: Browser Mockup with Desktop Hover-Scroll & Mobile Touch-Scroll (7 cols) */}
+        <div className="lg:col-span-7 flex flex-col justify-between h-full border-b lg:border-b-0 lg:border-r border-white/10 bg-[#0F0F12]">
+          {/* Browser Top Chrome Bar */}
+          <div className="px-4 py-3 bg-[#18181B] border-b border-white/10 flex items-center justify-between text-xs font-mono shrink-0">
+            <div className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
+              <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
+              <span className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-              01S Mobilidade
-            </h2>
-            <p className="text-gray-300 text-base sm:text-lg mt-2 max-w-2xl">
-              Do Rebranding à Plataforma Web Completa: Como transformamos a presença digital da antiga MOB3L em uma marca de autoridade no transporte de passageiros.
-            </p>
+            <div className="px-3 py-1 rounded-md bg-black/50 border border-white/10 text-gray-300 text-[11px] font-mono flex items-center gap-2 max-w-[240px] truncate">
+              <span className="w-2 h-2 rounded-full bg-[#4EA238] animate-pulse" />
+              <span>01smobilidade.com.br</span>
+            </div>
+            <span className="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-emerald-950/70 text-emerald-300 border border-emerald-500/30">
+              PROJETO COMPLETO
+            </span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="px-3 py-1.5 rounded-lg bg-white/5 text-gray-300 text-xs font-mono border border-white/5">
-              Cliente: 01S Mobilidade
-            </span>
-            <span className="px-3 py-1.5 rounded-lg bg-white/5 text-gray-300 text-xs font-mono border border-white/5">
-              Ano: 2026
-            </span>
+          {/* VIEWPORT 1: MOBILE VIEW (Manual touch swipe scroll) */}
+          <div className="lg:hidden relative h-[360px] sm:h-[400px] overflow-y-auto bg-[#121214] select-none scrollbar-thin scrollbar-thumb-emerald-500/30 scrollbar-track-black/40">
+            <img
+              src="/portfolio/sites/01s-mobilidade-completo.png"
+              onError={(e) => {
+                e.currentTarget.src =
+                  '/portfolio/sites/screenshort da pagina inicial do site 01smobilidade-1.png';
+              }}
+              alt="Captura real da Página Inicial completa da 01S Mobilidade"
+              className="w-full h-auto object-contain object-top"
+            />
+
+            {/* Top Badges */}
+            <div className="sticky top-3 left-3 z-10 float-left pl-3 pointer-events-none">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/85 backdrop-blur-md border border-white/15 text-white font-mono text-[10px] font-semibold shadow-lg">
+                SITE COMPLETO
+              </span>
+            </div>
+
+            {/* Floating Prompt for Mobile Touch Scroll */}
+            <div className="sticky bottom-3 right-3 z-10 float-right pr-3 pointer-events-none">
+              <span className="inline-flex items-center gap-1.5 text-[10px] font-mono text-gray-200 bg-black/90 backdrop-blur-md px-2.5 py-1 rounded-lg border border-[#4EA238]/30 shadow-lg">
+                <MousePointer className="w-3 h-3 text-[#4EA238] animate-bounce" />
+                <span>Deslize para rolar o site</span>
+              </span>
+            </div>
+          </div>
+
+          {/* VIEWPORT 2: DESKTOP VIEW (Framed fold at rest, slow automatic glide on mouse hover) */}
+          <div
+            className="hidden lg:block relative h-[420px] overflow-hidden bg-[#121214] cursor-pointer group select-none"
+            onMouseEnter={() => setIsSiteScrolled(true)}
+            onMouseLeave={() => setIsSiteScrolled(false)}
+            onClick={() => setIsSiteScrolled(!isSiteScrolled)}
+          >
+            <img
+              src="/portfolio/sites/01s-mobilidade-completo.png"
+              onError={(e) => {
+                e.currentTarget.src =
+                  '/portfolio/sites/screenshort da pagina inicial do site 01smobilidade-1.png';
+              }}
+              alt="Captura real da Página Inicial completa da 01S Mobilidade"
+              className="w-full object-cover object-top"
+              style={{
+                transform: isSiteScrolled
+                  ? 'translateY(calc(-100% + 420px))'
+                  : 'translateY(0%)',
+                transition: isSiteScrolled
+                  ? 'transform 26000ms linear'
+                  : 'transform 2500ms ease-out'
+              }}
+            />
+
+            {/* Top Badges */}
+            <div className="absolute top-3 left-3 z-10 pointer-events-none">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-white font-mono text-[11px] font-semibold shadow-lg">
+                SITE COMPLETO
+              </span>
+            </div>
+
+            <div className="absolute top-3 right-3 z-10">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLightboxOpen(true);
+                }}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/80 hover:bg-black text-gray-200 hover:text-white border border-white/15 text-xs transition-colors backdrop-blur-sm shadow-md"
+                title="Abrir imagem completa em tela cheia"
+              >
+                <Maximize2 className="w-3.5 h-3.5 text-[#4EA238]" />
+                <span className="text-[11px] font-mono">Ver ampliado</span>
+              </button>
+            </div>
+
+            {/* Scroll Helper Prompt */}
+            <div className="absolute bottom-3 right-3 z-10 pointer-events-none">
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-gray-200 bg-black/85 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/15 shadow-lg group-hover:opacity-0 transition-opacity">
+                <MousePointer className="w-3.5 h-3.5 text-[#4EA238] animate-bounce" />
+                <span>Passe o mouse para rolar o site</span>
+              </span>
+            </div>
+          </div>
+
+          {/* Mockup Bottom Status Bar */}
+          <div className="px-4 py-3 bg-[#101012] border-t border-white/10 flex items-center justify-between text-xs text-gray-400 shrink-0">
+            <div className="flex items-center gap-2 text-[11px] font-mono">
+              <span className="w-2 h-2 rounded-full bg-[#4EA238]" />
+              <span className="text-gray-300">Página Inicial Oficial • 01S Mobilidade</span>
+            </div>
+
+            <button
+              onClick={() => setLightboxOpen(true)}
+              className="inline-flex items-center gap-1 text-[11px] font-mono text-[#4EA238] hover:text-emerald-300 transition-colors"
+            >
+              <Maximize2 className="w-3 h-3" />
+              <span>Ver captura completa</span>
+            </button>
           </div>
         </div>
 
-        {/* The 3 Screen Interactive Viewers */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
-          {/* Left Column: Screen Navigation & Project Story */}
-          <div className="lg:col-span-5 space-y-6">
-            {/* Screen Selector Buttons */}
-            <div className="p-2 rounded-2xl bg-white/[0.02] border border-white/10 space-y-2">
-              <button
-                onClick={() => setActiveTab('home')}
-                className={`w-full flex items-center justify-between p-3.5 rounded-xl text-left transition-all ${
-                  activeTab === 'home'
-                    ? 'bg-gradient-to-r from-emerald-600/30 to-transparent border border-emerald-500/40 text-white shadow-md'
-                    : 'text-gray-400 hover:text-white hover:bg-white/5'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <div className={`p-2 rounded-lg ${activeTab === 'home' ? 'bg-emerald-500 text-black' : 'bg-white/5 text-gray-400'}`}>
-                    <Layers className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-white">01. Página Inicial (Home)</p>
-                    <p className="text-xs text-gray-400">Mobilidade inteligente de cara nova</p>
-                  </div>
-                </div>
-                <ChevronRight className={`w-4 h-4 transition-transform ${activeTab === 'home' ? 'rotate-90 text-emerald-400' : 'text-gray-600'}`} />
-              </button>
-
-              <button
-                onClick={() => setActiveTab('driver')}
-                className={`w-full flex items-center justify-between p-3.5 rounded-xl text-left transition-all ${
-                  activeTab === 'driver'
-                    ? 'bg-gradient-to-r from-orange-600/30 to-transparent border border-orange-500/40 text-white shadow-md'
-                    : 'text-gray-400 hover:text-white hover:bg-white/5'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <div className={`p-2 rounded-lg ${activeTab === 'driver' ? 'bg-orange-500 text-black' : 'bg-white/5 text-gray-400'}`}>
-                    <Car className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-white">02. Página de Motoristas</p>
-                    <p className="text-xs text-gray-400">Ganhe mais dirigindo com a 01S</p>
-                  </div>
-                </div>
-                <ChevronRight className={`w-4 h-4 transition-transform ${activeTab === 'driver' ? 'rotate-90 text-orange-400' : 'text-gray-600'}`} />
-              </button>
-
-              <button
-                onClick={() => setActiveTab('passenger')}
-                className={`w-full flex items-center justify-between p-3.5 rounded-xl text-left transition-all ${
-                  activeTab === 'passenger'
-                    ? 'bg-gradient-to-r from-emerald-600/30 to-transparent border border-emerald-500/40 text-white shadow-md'
-                    : 'text-gray-400 hover:text-white hover:bg-white/5'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <div className={`p-2 rounded-lg ${activeTab === 'passenger' ? 'bg-emerald-500 text-black' : 'bg-white/5 text-gray-400'}`}>
-                    <Users className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-white">03. Página de Passageiros</p>
-                    <p className="text-xs text-gray-400">Corrida simples, ágil e confiável</p>
-                  </div>
-                </div>
-                <ChevronRight className={`w-4 h-4 transition-transform ${activeTab === 'passenger' ? 'rotate-90 text-emerald-400' : 'text-gray-600'}`} />
-              </button>
-
-              <button
-                onClick={() => setActiveTab('rebrand')}
-                className={`w-full flex items-center justify-between p-3.5 rounded-xl text-left transition-all ${
-                  activeTab === 'rebrand'
-                    ? 'bg-gradient-to-r from-purple-600/30 to-transparent border border-purple-500/40 text-white shadow-md'
-                    : 'text-gray-400 hover:text-white hover:bg-white/5'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <div className={`p-2 rounded-lg ${activeTab === 'rebrand' ? 'bg-purple-500 text-white' : 'bg-white/5 text-gray-400'}`}>
-                    <ShieldCheck className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-white">04. A Transição da Marca</p>
-                    <p className="text-xs text-gray-400">De MOB3L para 01S Mobilidade</p>
-                  </div>
-                </div>
-                <ChevronRight className={`w-4 h-4 transition-transform ${activeTab === 'rebrand' ? 'rotate-90 text-purple-400' : 'text-gray-600'}`} />
-              </button>
+        {/* Right Column: Information, Entregáveis & Actions (5 cols) */}
+        <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between bg-[#141416]">
+          <div className="space-y-6">
+            <div className="flex items-center justify-between gap-4">
+              <div className="h-10 sm:h-11 px-2 py-1 rounded-lg bg-black border border-white/10 inline-flex items-center justify-center shrink-0 shadow-sm">
+                <img
+                  src="/portfolio/sites/01s-mobilidade-logo.png"
+                  alt="Logo 01S Mobilidade"
+                  className="h-full w-auto object-contain"
+                />
+              </div>
+              <span className="text-xs font-mono text-gray-400">Três Lagoas / MS</span>
             </div>
 
-            {/* Scope Deliverables List */}
-            <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
-              <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-emerald-400" />
-                <span>Entregáveis Realizados pela Arte do Algoritmo</span>
-              </h3>
-              <ul className="space-y-3">
+            <div>
+              <h4 className="text-xl font-bold text-white">Plataforma 01S Mobilidade</h4>
+              <p className="text-gray-300 text-sm mt-2 leading-relaxed">
+                Rebranding estratégico e plataforma web institucional para consolidar a transição da marca,
+                transmitir autoridade aos passageiros e viabilizar o credenciamento de condutores parceiros.
+              </p>
+            </div>
+
+            {/* Key Deliverables List (Entregáveis Realizados) */}
+            <div className="space-y-2.5 pt-2">
+              <span className="text-xs font-mono uppercase tracking-wider text-gray-400 font-semibold block">
+                Entregáveis Realizados:
+              </span>
+              <ul className="space-y-2 text-xs text-gray-300">
                 {FLAGSHIP_PROJECT.deliverables?.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-300">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 shrink-0" />
+                  <li key={idx} className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#4EA238] shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Client Real Words Quote snippet */}
-            <div className="p-5 rounded-2xl bg-gradient-to-br from-white/[0.04] to-white/[0.01] border border-white/10 relative">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xs flex items-center justify-center border border-emerald-500/30">
-                  JN
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-white">Junior • Sócio da 01S Mobilidade</p>
-                  <p className="text-[11px] text-gray-400">Validação pós-projeto via WhatsApp</p>
-                </div>
-              </div>
-              <p className="text-xs sm:text-sm italic text-gray-300 leading-relaxed">
-                &ldquo;O Google mandou um email parabenizando os acessos em menos de 1 mês tantas views lá 👏 Top... e o site tem muita participação nisso. Seu trabalho é muito profissional João! Meu irmão é da área e elogiou pra caramba!!&rdquo;
+            {/* Robson Verified Client Feedback Quote (Kept exactly as-is) */}
+            <div className="p-4 rounded-xl bg-[#1A1A1E] border border-[#4EA238]/20 text-xs text-gray-300 relative">
+              <Quote className="w-5 h-5 text-[#4EA238]/30 absolute top-3 right-3" />
+              <p className="italic leading-relaxed">
+                &ldquo;João, obrigado por tudo. Você é um grande profissional. É bom saber que na minha Bahia tem gente como você, competente.&rdquo;
               </p>
-            </div>
-          </div>
-
-          {/* Right Column: High-Fidelity Browser Mockup with Real Structure */}
-          <div className="lg:col-span-7">
-            <div className="rounded-2xl bg-[#111827] border border-white/15 shadow-2xl overflow-hidden">
-              {/* Browser Window Header */}
-              <div className="px-4 py-3 bg-[#0B0F19] border-b border-white/10 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                </div>
-
-                {/* Simulated URL bar */}
-                <div className="flex items-center gap-2 px-4 py-1.5 rounded-lg bg-black/40 border border-white/5 text-xs text-gray-300 font-mono w-64 max-w-full justify-center truncate">
-                  <span className="text-emerald-400 text-[10px]">https://</span>
-                  <span>01smobilidade.com.br{activeTab === 'driver' ? '/motoristas' : activeTab === 'passenger' ? '/passageiros' : activeTab === 'rebrand' ? '/sobre-a-marca' : ''}</span>
-                </div>
-
-                <div className="flex items-center gap-2 text-gray-400 text-xs">
-                  <span className="hidden sm:inline text-[11px] font-mono text-emerald-400">PROJETO AO VIVO</span>
-                </div>
-              </div>
-
-              {/* Browser Content Simulated Viewport (Scrollable with rich contents matching real screenshots) */}
-              <div className="h-[520px] overflow-y-auto custom-scrollbar bg-[#0D1F16] text-white p-4 sm:p-6 select-none font-sans">
-                {/* 01S Brand Navbar inside mockup */}
-                <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6 sticky top-0 bg-[#0D1F16]/95 backdrop-blur-sm z-20">
-                  <div className="flex items-center gap-2.5">
-                    {/* 01S Logo Symbol */}
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-emerald-500 to-orange-500 flex items-center justify-center font-black text-black text-sm tracking-tighter shadow-md">
-                      01S
-                    </div>
-                    <span className="font-extrabold text-sm tracking-tight text-white">01S MOBILIDADE</span>
-                  </div>
-
-                  <div className="flex items-center gap-2 sm:gap-4 text-xs font-medium">
-                    <span className={`cursor-pointer ${activeTab === 'home' ? 'text-emerald-400 font-bold' : 'text-gray-300'}`} onClick={() => setActiveTab('home')}>Home</span>
-                    <span className={`cursor-pointer ${activeTab === 'driver' ? 'text-emerald-400 font-bold' : 'text-gray-300'}`} onClick={() => setActiveTab('driver')}>Motoristas</span>
-                    <span className={`cursor-pointer ${activeTab === 'passenger' ? 'text-emerald-400 font-bold' : 'text-gray-300'}`} onClick={() => setActiveTab('passenger')}>Passageiros</span>
-                    <div className="px-3 py-1 rounded-full bg-emerald-500 text-black text-[11px] font-bold">
-                      WhatsApp
-                    </div>
-                  </div>
-                </div>
-
-                {/* TAB 1: HOME SCREEN MOCKUP */}
-                {activeTab === 'home' && (
-                  <div className="space-y-8 animate-fadeIn">
-                    {/* Hero Section */}
-                    <div className="relative p-6 rounded-2xl bg-gradient-to-br from-emerald-950/60 via-[#0B2317] to-[#122A1E] border border-emerald-500/20 overflow-hidden">
-                      <div className="relative z-10 max-w-lg">
-                        <span className="inline-block px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-bold mb-3 border border-emerald-500/30">
-                          De cara nova. Com o coração de sempre!
-                        </span>
-                        <h4 className="text-xl sm:text-2xl font-black text-white leading-tight mb-3">
-                          Mobilidade inteligente. Agora, de cara nova.
-                        </h4>
-                        <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-5">
-                          A 01S Mobilidade evoluiu para oferecer mais eficiência, organização e confiança com a mesma operação que você já conhece.
-                        </p>
-                        <div className="flex flex-wrap gap-2.5">
-                          <button onClick={() => setActiveTab('driver')} className="px-4 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-black font-extrabold text-xs">
-                            Sou motorista
-                          </button>
-                          <button onClick={() => setActiveTab('passenger')} className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-black font-extrabold text-xs">
-                            Sou Passageiro
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* Visual 3D Ribbon badge */}
-                      <div className="mt-6 sm:mt-0 sm:absolute sm:right-4 sm:top-6 p-4 rounded-xl bg-black/40 border border-emerald-500/30 backdrop-blur-md text-center max-w-[180px]">
-                        <div className="w-12 h-12 mx-auto rounded-full bg-gradient-to-r from-emerald-400 to-orange-400 flex items-center justify-center font-black text-black text-base mb-2">
-                          01S
-                        </div>
-                        <p className="text-[10px] text-gray-300 font-medium leading-tight">
-                          Transporte Seguro & Avaliado na Bahia
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Rebrand Notice Block */}
-                    <div className="p-5 rounded-xl bg-white/[0.03] border border-white/10">
-                      <h5 className="text-sm font-bold text-white mb-2 flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-orange-400" />
-                        Estamos de cara nova — Da MOB3L para 01S Mobilidade
-                      </h5>
-                      <p className="text-xs text-gray-300 leading-relaxed">
-                        A Mob3L evoluiu e agora é 01S Mobilidade. Mudamos nossa marca para oferecer uma experiência ainda melhor, mas continuamos com a mesma equipe, motoristas e qualidade que você confia.
-                      </p>
-                    </div>
-
-                    {/* Differentials Grid */}
-                    <div>
-                      <h5 className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-3">Nossos Diferenciais</h5>
-                      <div className="grid grid-cols-2 gap-3 text-xs">
-                        <div className="p-3 rounded-lg bg-black/30 border border-white/5">
-                          <p className="font-bold text-white">Organização real</p>
-                          <p className="text-[11px] text-gray-400">Gestão transparente e frotas monitoradas</p>
-                        </div>
-                        <div className="p-3 rounded-lg bg-black/30 border border-white/5">
-                          <p className="font-bold text-white">Pontualidade garantida</p>
-                          <p className="text-[11px] text-gray-400">Atendimento ágil para suas viagens</p>
-                        </div>
-                        <div className="p-3 rounded-lg bg-black/30 border border-white/5">
-                          <p className="font-bold text-white">Serviço profissional</p>
-                          <p className="text-[11px] text-gray-400">Motoristas credenciados e avaliados</p>
-                        </div>
-                        <div className="p-3 rounded-lg bg-black/30 border border-white/5">
-                          <p className="font-bold text-white">Suporte humanizado</p>
-                          <p className="text-[11px] text-gray-400">Atendimento local direto por WhatsApp</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* App Download with QR Code */}
-                    <div className="p-5 rounded-xl bg-gradient-to-r from-emerald-900/40 to-black/60 border border-emerald-500/30 flex items-center justify-between gap-4">
-                      <div>
-                        <p className="text-sm font-bold text-white">Baixe o app e peça sua corrida</p>
-                        <p className="text-xs text-gray-300">Disponível para motoristas e passageiros</p>
-                      </div>
-                      <div className="p-2 rounded-lg bg-white text-black shrink-0">
-                        <QrCode className="w-8 h-8" />
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* TAB 2: DRIVER SCREEN MOCKUP */}
-                {activeTab === 'driver' && (
-                  <div className="space-y-8 animate-fadeIn">
-                    <div className="p-6 rounded-2xl bg-gradient-to-br from-orange-950/50 via-[#1C150D] to-[#251A0C] border border-orange-500/30">
-                      <span className="inline-block px-3 py-1 rounded-full bg-orange-500/20 text-orange-300 text-[11px] font-bold mb-3 border border-orange-500/30">
-                        Para Motoristas Parceiros
-                      </span>
-                      <h4 className="text-xl sm:text-2xl font-black text-white leading-tight mb-2">
-                        Ganhe mais dirigindo com a 01S Mobilidade
-                      </h4>
-                      <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
-                        Aqui o motorista tem voz, suporte próximo e taxas justas para rodar com tranquilidade e lucrar de verdade.
-                      </p>
-                      <button className="px-5 py-2.5 rounded-xl bg-orange-500 text-black font-extrabold text-xs shadow-lg">
-                        Cadastre-se para Rodar
-                      </button>
-                    </div>
-
-                    {/* Driver Pillars */}
-                    <div className="grid grid-cols-2 gap-3 text-xs">
-                      <div className="p-3 rounded-lg bg-black/40 border border-white/5">
-                        <p className="font-bold text-orange-400">Ganhos Consistentes</p>
-                        <p className="text-[11px] text-gray-400">Taxas desenhadas para valorizar o seu esforço</p>
-                      </div>
-                      <div className="p-3 rounded-lg bg-black/40 border border-white/5">
-                        <p className="font-bold text-orange-400">Mais Organização</p>
-                        <p className="text-[11px] text-gray-400">Agendamentos e corridas corporativas organizadas</p>
-                      </div>
-                      <div className="p-3 rounded-lg bg-black/40 border border-white/5">
-                        <p className="font-bold text-orange-400">Suporte Próximo</p>
-                        <p className="text-[11px] text-gray-400">Fale com pessoas reais, sem robôs travando</p>
-                      </div>
-                      <div className="p-3 rounded-lg bg-black/40 border border-white/5">
-                        <p className="font-bold text-orange-400">Mais Oportunidades</p>
-                        <p className="text-[11px] text-gray-400">Traslados aeroporto, eventos e rotas executivas</p>
-                      </div>
-                    </div>
-
-                    {/* Requirements Checklist */}
-                    <div className="p-5 rounded-xl bg-white/[0.03] border border-white/10">
-                      <p className="text-xs font-bold uppercase tracking-wider text-orange-400 mb-3">
-                        O que você precisa para começar:
-                      </p>
-                      <ul className="space-y-2 text-xs text-gray-300">
-                        <li className="flex items-center gap-2">
-                          <Check className="w-3.5 h-3.5 text-orange-400" /> CNH definitiva com observação EAR (Exerce Atividade Remunerada)
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <Check className="w-3.5 h-3.5 text-orange-400" /> Veículo em boas condições e documento (CRLV) em dia
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <Check className="w-3.5 h-3.5 text-orange-400" /> Smartphone com acesso à internet e GPS ativo
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <Check className="w-3.5 h-3.5 text-orange-400" /> Cadastro aprovado pela equipe de segurança 01S
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                )}
-
-                {/* TAB 3: PASSENGER SCREEN MOCKUP */}
-                {activeTab === 'passenger' && (
-                  <div className="space-y-8 animate-fadeIn">
-                    <div className="p-6 rounded-2xl bg-gradient-to-br from-emerald-950/50 via-[#0B2117] to-[#132A1F] border border-emerald-500/30">
-                      <span className="inline-block px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-bold mb-3 border border-emerald-500/30">
-                        Para Passageiros
-                      </span>
-                      <h4 className="text-xl sm:text-2xl font-black text-white leading-tight mb-2">
-                        Sua corrida, agora mais simples e confiável
-                      </h4>
-                      <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
-                        Carros confortáveis, motoristas pontuais e preço justo do ponto de partida ao seu destino.
-                      </p>
-                      <button className="px-5 py-2.5 rounded-xl bg-emerald-500 text-black font-extrabold text-xs shadow-lg">
-                        Pedir Corrida pelo App
-                      </button>
-                    </div>
-
-                    {/* 3 Step Timeline */}
-                    <div>
-                      <p className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-3">Como Funciona</p>
-                      <div className="space-y-3">
-                        <div className="flex items-start gap-3 p-3 rounded-lg bg-black/40 border border-white/5">
-                          <div className="w-6 h-6 rounded-full bg-emerald-500 text-black text-xs font-bold flex items-center justify-center shrink-0">1</div>
-                          <div>
-                            <p className="text-xs font-bold text-white">Baixe o aplicativo 01S</p>
-                            <p className="text-[11px] text-gray-400">Instale no seu Android ou iPhone em poucos segundos</p>
-                          </div>
-                        </div>
-                        <div className="flex items-start gap-3 p-3 rounded-lg bg-black/40 border border-white/5">
-                          <div className="w-6 h-6 rounded-full bg-emerald-500 text-black text-xs font-bold flex items-center justify-center shrink-0">2</div>
-                          <div>
-                            <p className="text-xs font-bold text-white">Solicite sua corrida</p>
-                            <p className="text-[11px] text-gray-400">Insira seu destino e veja a estimativa transparente na hora</p>
-                          </div>
-                        </div>
-                        <div className="flex items-start gap-3 p-3 rounded-lg bg-black/40 border border-white/5">
-                          <div className="w-6 h-6 rounded-full bg-emerald-500 text-black text-xs font-bold flex items-center justify-center shrink-0">3</div>
-                          <div>
-                            <p className="text-xs font-bold text-white">Acompanhe em tempo real</p>
-                            <p className="text-[11px] text-gray-400">Veja o motorista se aproximando e viaje com segurança</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* TAB 4: REBRANDING STORY */}
-                {activeTab === 'rebrand' && (
-                  <div className="space-y-6 animate-fadeIn">
-                    <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-950/50 via-[#1C1028] to-[#120D1B] border border-purple-500/30">
-                      <span className="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-[11px] font-bold mb-3 border border-purple-500/30">
-                        Estratégia de Rebranding
-                      </span>
-                      <h4 className="text-xl sm:text-2xl font-black text-white leading-tight mb-2">
-                        Da MOB3L para 01S Mobilidade
-                      </h4>
-                      <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
-                        Como a Arte do Algoritmo liderou a transição visual da marca mantendo a confiança dos usuários e consolidando a nova fase corporativa.
-                      </p>
-                    </div>
-
-                    <div className="space-y-3 text-xs">
-                      <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10">
-                        <p className="font-bold text-emerald-400 mb-1">1. Alinhamento de Conceito com os Sócios</p>
-                        <p className="text-gray-300 leading-relaxed">
-                          Conforme o feedback de Robson e Junior, branding é a construção da reputação. Traduzimos a evolução do serviço em uma identidade visual forte, combinando verde (eficiência, segurança) e laranja (energia, mobilidade).
-                        </p>
-                      </div>
-
-                      <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10">
-                        <p className="font-bold text-cyan-400 mb-1">2. Presença no Google e Indexação Rápida</p>
-                        <p className="text-gray-300 leading-relaxed">
-                          O Google enviou comunicado oficial congratulando os acessos em menos de 1 mês de lançamento, comprovando a estrutura de SEO e o apelo visual da página.
-                        </p>
-                      </div>
-
-                      <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10">
-                        <p className="font-bold text-purple-400 mb-1">3. Cópia Humanizada e Transparência</p>
-                        <p className="text-gray-300 leading-relaxed">
-                          A frase &ldquo;De cara nova. Com o coração de sempre!&rdquo; acolheu a base de usuários da MOB3L, garantindo retenção imediata.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Mockup bottom bar */}
-              <div className="px-4 py-3 bg-[#0B0F19] border-t border-white/10 flex items-center justify-between text-xs text-gray-400">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                  <span>Desenvolvido e Gerenciado por Arte do Algoritmo</span>
-                </div>
-                <a
-                  href={AGENCY_INFO.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-emerald-400 hover:underline font-semibold"
-                >
-                  Falar sobre este case &rarr;
-                </a>
+              <div className="mt-2.5 flex items-center justify-between text-[11px] font-mono text-gray-400">
+                <span className="text-[#4EA238] font-semibold">— Robson • 01S Mobilidade</span>
+                <span className="text-gray-500">Print Real Comprovado</span>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Bottom CTA for the Case */}
-        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-emerald-950/40 via-cyan-950/30 to-[#18181B] border border-emerald-500/20 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white">
-              Quer uma transformação digital completa como a da 01S Mobilidade?
-            </h3>
-            <p className="text-sm text-gray-300 mt-1 max-w-xl">
-              Cuidamos de tudo: do logotipo e identidade visual até a plataforma web responsiva com SEO pronto para o Google.
-            </p>
+          {/* Bottom Actions: "Ver case completo" (Primary with hover preview & mobile pulse) */}
+          <div className="pt-6 mt-6 border-t border-white/10 flex flex-col sm:flex-row items-center gap-3">
+            <ZeroOneCaseButton
+              id="btn-ver-case-01s-portfolio"
+              href="#projetos/01s-mobilidade"
+              onClick={handleOpenCase}
+              className="w-full sm:flex-1"
+            />
           </div>
-
-          <a
-            href={`https://wa.me/${AGENCY_INFO.phoneRaw}?text=${encodeURIComponent(
-              'Olá João! Vi o case de sucesso da 01S Mobilidade no site da Arte do Algoritmo e quero um projeto com essa qualidade para minha empresa.'
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-black font-extrabold text-sm shadow-[0_0_25px_rgba(16,185,129,0.3)] transition-all hover:scale-105 shrink-0 inline-flex items-center gap-2"
-          >
-            <MessageCircle className="w-4 h-4 fill-current" />
-            <span>Quero um projeto como esse</span>
-          </a>
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      {lightboxOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+          onClick={() => setLightboxOpen(false)}
+        >
+          <div
+            className="relative max-w-4xl w-full bg-[#18181B] rounded-2xl border border-white/15 overflow-hidden shadow-2xl max-h-[90vh] flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="px-4 py-3 bg-[#121214] border-b border-white/10 flex items-center justify-between">
+              <div>
+                <p className="text-xs font-bold text-white">Print Real • 01S Mobilidade</p>
+                <p className="text-[11px] text-gray-400 font-mono">Página Inicial Oficial Completa</p>
+              </div>
+              <button
+                onClick={() => setLightboxOpen(false)}
+                className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                title="Fechar"
+              >
+                <Maximize2 className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="p-4 bg-black/70 overflow-y-auto custom-scrollbar flex-1">
+              <img
+                src="/portfolio/sites/01s-mobilidade-completo.png"
+                alt="Captura real da Página Inicial da 01S Mobilidade"
+                className="w-full h-auto rounded-lg object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

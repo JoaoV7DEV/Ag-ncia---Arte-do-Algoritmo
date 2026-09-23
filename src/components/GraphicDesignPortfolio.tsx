@@ -7,13 +7,21 @@ export const GraphicDesignPortfolio: React.FC = () => {
   const [selectedDesign, setSelectedDesign] = useState<GraphicDesignProject | null>(null);
 
   const getBadgeClass = (classification: string) => {
-    switch (classification) {
-      case 'PROJETO COMERCIAL':
-        return 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
-      case 'ESTUDO VISUAL':
-        return 'bg-sky-500/20 text-sky-300 border-sky-500/30';
-      case 'CONCEITO':
+    switch (classification.toLowerCase()) {
+      case 'redes sociais':
+      case 'design de redes sociais':
         return 'bg-purple-500/20 text-purple-300 border-purple-500/30';
+      case 'design gráfico':
+      case 'design grafico':
+        return 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30';
+      case 'identidade visual':
+        return 'bg-pink-500/20 text-pink-300 border-pink-500/30';
+      case 'projeto comercial':
+        return 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
+      case 'estudo visual':
+        return 'bg-sky-500/20 text-sky-300 border-sky-500/30';
+      case 'conceito':
+        return 'bg-amber-500/20 text-amber-300 border-amber-500/30';
       default:
         return 'bg-white/10 text-gray-300 border-white/10';
     }
@@ -36,12 +44,12 @@ export const GraphicDesignPortfolio: React.FC = () => {
         </div>
 
         {/* Design Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="max-w-2xl mx-auto">
           {GRAPHIC_DESIGN_PROJECTS.map((item) => (
             <div
               key={item.id}
               onClick={() => setSelectedDesign(item)}
-              className="p-6 rounded-3xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 hover:border-[#E71870]/40 transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+              className="p-6 sm:p-8 rounded-3xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/10 hover:border-[#E71870]/40 transition-all duration-300 cursor-pointer group flex flex-col justify-between shadow-xl"
             >
               <div>
                 {/* Visual Header with Gradient Canvas & Color Swatches */}
@@ -56,7 +64,15 @@ export const GraphicDesignPortfolio: React.FC = () => {
                     >
                       {item.classification}
                     </span>
-                    <Layers className="w-4 h-4 text-white/70" />
+                    {item.logoUrl ? (
+                      <img
+                        src={item.logoUrl}
+                        alt={item.title}
+                        className="h-6 w-auto max-w-[80px] object-contain p-0.5 bg-black/40 rounded border border-white/10"
+                      />
+                    ) : (
+                      <Layers className="w-4 h-4 text-white/70" />
+                    )}
                   </div>
 
                   <div className="flex items-center gap-1.5 p-1.5 rounded-xl bg-black/40 backdrop-blur-md w-fit">

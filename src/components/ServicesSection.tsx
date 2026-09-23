@@ -1,191 +1,189 @@
-import React, { useState } from 'react';
-import { SERVICE_PILLARS, AGENCY_INFO } from '../data/agencyData';
-import { Code, Palette, TrendingUp, Check, ArrowRight, MessageCircle } from 'lucide-react';
+import React from 'react';
+import { Code, Palette, TrendingUp, CheckCircle2, MessageCircle, ArrowRight, Sparkles } from 'lucide-react';
+import { AGENCY_INFO } from '../data/agencyData';
+import { ScrollReveal } from './ScrollReveal';
 
 export const ServicesSection: React.FC = () => {
-  const [activePillarId, setActivePillarId] = useState<string>('desenvolvimento');
-
-  const activePillar = SERVICE_PILLARS.find((p) => p.id === activePillarId) || SERVICE_PILLARS[0];
-
-  const getPillarIcon = (id: string) => {
-    switch (id) {
-      case 'desenvolvimento':
-        return <Code className="w-5 h-5" />;
-      case 'design':
-        return <Palette className="w-5 h-5" />;
-      case 'presenca':
-        return <TrendingUp className="w-5 h-5" />;
-      default:
-        return <Code className="w-5 h-5" />;
-    }
-  };
-
-  const getPillarGradient = (color: string) => {
-    switch (color) {
-      case 'cyan':
-        return 'from-[#00FFFF] to-[#0284C7]';
-      case 'magenta':
-        return 'from-[#E71870] to-[#F43F5E]';
-      case 'purple':
-        return 'from-[#A855F7] to-[#6366F1]';
-      default:
-        return 'from-[#00FFFF] to-[#0284C7]';
-    }
-  };
-
-  const getPillarBorder = (color: string) => {
-    switch (color) {
-      case 'cyan':
-        return 'border-[#00FFFF]/30';
-      case 'magenta':
-        return 'border-[#E71870]/30';
-      case 'purple':
-        return 'border-[#A855F7]/30';
-      default:
-        return 'border-[#00FFFF]/30';
-    }
-  };
+  const serviceCategories = [
+    {
+      id: 'desenvolvimento-digital',
+      number: '01',
+      title: 'Desenvolvimento Digital',
+      tagline: 'Sites rápidos, seguros e prontos para converter',
+      description:
+        'Criamos plataformas web modernas projetadas para carregar em segundos, funcionar com excelência em smartphones e guiar o cliente até o contato.',
+      icon: Code,
+      accentColor: 'text-[#00FFFF]',
+      badgeBg: 'bg-cyan-500/10 border-cyan-500/20 text-[#00FFFF]',
+      hoverBorder: 'hover:border-cyan-400/40',
+      iconBox: 'bg-cyan-500/10 border-cyan-500/20 text-[#00FFFF]',
+      items: [
+        { name: 'Sites institucionais', desc: 'Apresentação profissional com alta autoridade para sua empresa.' },
+        { name: 'Landing pages', desc: 'Páginas de alta conversão para campanhas e captação de leads.' },
+        { name: 'Lojas virtuais', desc: 'Estrutura de e-commerce ágil, intuitiva e preparada para vendas.' },
+        { name: 'Sites personalizados', desc: 'Aplicações web sob medida para as necessidades específicas do seu negócio.' },
+      ],
+    },
+    {
+      id: 'design-estrategico',
+      number: '02',
+      title: 'Design Estratégico',
+      tagline: 'Marcas com personalidade, estética e coerência',
+      description:
+        'Desenvolvemos a identidade visual que coloca sua empresa em outro patamar de percepção de valor, unindo criatividade e psicologia das cores.',
+      icon: Palette,
+      accentColor: 'text-[#E71870]',
+      badgeBg: 'bg-pink-500/10 border-pink-500/20 text-[#E71870]',
+      hoverBorder: 'hover:border-pink-500/40',
+      iconBox: 'bg-pink-500/10 border-pink-500/20 text-[#E71870]',
+      items: [
+        { name: 'Identidade visual', desc: 'Paleta de cores, tipografia e manual de aplicação completo.' },
+        { name: 'Logotipos', desc: 'Símbolos autorais, memoráveis e com alto impacto visual.' },
+        { name: 'Materiais gráficos', desc: 'Papelaria, cartões digitais interativos, banners e catálogos.' },
+        { name: 'Artes para redes sociais', desc: 'Templates profissionais para elevar o padrão do seu feed.' },
+      ],
+    },
+    {
+      id: 'presenca-digital',
+      number: '03',
+      title: 'Presença e Marketing Digital',
+      tagline: 'Visibilidade para ser encontrado por quem quer comprar',
+      description:
+        'Posicionamos seu negócio onde o seu público busca, fortalecendo sua autoridade no Google e nas redes sociais.',
+      icon: TrendingUp,
+      accentColor: 'text-[#C754F0]',
+      badgeBg: 'bg-[#C754F0]/10 border-[#C754F0]/20 text-[#C754F0]',
+      hoverBorder: 'hover:border-[#C754F0]/40',
+      iconBox: 'bg-[#C754F0]/10 border-[#C754F0]/20 text-[#C754F0]',
+      items: [
+        { name: 'Google Meu Negócio', desc: 'Otimização para aparecer nas primeiras posições de busca local.' },
+        { name: 'Tráfego pago', desc: 'Planejamento e estruturação de anúncios no Meta Ads e Google.' },
+        { name: 'SEO (Otimização)', desc: 'Estrutura técnica para posicionar seu site organicamente.' },
+        { name: 'Apoio à presença digital', desc: 'Consultoria e acompanhamento contínuo da evolução da sua marca.' },
+      ],
+    },
+  ];
 
   return (
-    <section id="servicos" className="py-24 bg-[#272727] relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="text-xs uppercase tracking-widest text-[#00FFFF] font-mono font-semibold">
-            Nossos 3 Pilares de Atuação
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mt-2 mb-4 tracking-tight">
-            Soluções completas para cada estágio da sua marca
-          </h2>
-          <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-            Do primeiro logotipo ao site de alta conversão integrado com o Google, oferecemos um ecossistema completo sem intermediários.
-          </p>
-        </div>
+    <section id="servicos" className="py-24 bg-[#272727] relative overflow-hidden">
+      {/* Subtle background ambient glows */}
+      <div className="absolute top-1/2 -left-20 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none select-none" />
+      <div className="absolute bottom-10 -right-20 w-80 h-80 bg-pink-500/5 rounded-full blur-3xl pointer-events-none select-none" />
 
-        {/* Pillar Tab Selector */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
-          {SERVICE_PILLARS.map((pillar) => {
-            const isActive = pillar.id === activePillarId;
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <ScrollReveal>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-[#00FFFF] mb-3">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>NOSSAS SOLUÇÕES</span>
+            </div>
+            <h2
+              className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight"
+            >
+              Serviços desenhados para acelerar seu negócio
+            </h2>
+            <p className="text-gray-300 text-sm sm:text-base mt-3 leading-relaxed">
+              Do primeiro logotipo à plataforma web de alta conversão, oferecemos um ecossistema completo sem complicação técnica e com contato direto.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        {/* 3 Main Service Areas Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-14">
+          {serviceCategories.map((cat, index) => {
+            const Icon = cat.icon;
+            const cardAccentBorder =
+              cat.id === 'desenvolvimento-digital'
+                ? 'border-cyan-500/25 hover:border-cyan-400/50'
+                : cat.id === 'design-estrategico'
+                ? 'border-pink-500/20 hover:border-pink-500/40'
+                : 'border-white/[0.08] hover:border-[#B847C9]/40';
+
             return (
-              <button
-                key={pillar.id}
-                id={`tab-pillar-${pillar.id}`}
-                onClick={() => setActivePillarId(pillar.id)}
-                className={`flex items-center gap-3 px-5 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 border ${
-                  isActive
-                    ? 'bg-white/10 text-white shadow-lg border-white/20 scale-[1.02]'
-                    : 'bg-white/[0.02] text-gray-400 hover:text-white hover:bg-white/[0.05] border-white/5'
-                }`}
-              >
+              <ScrollReveal key={cat.id} delay={index * 0.12} className="h-full">
                 <div
-                  className={`p-1.5 rounded-lg transition-colors ${
-                    isActive ? 'bg-[#00FFFF] text-[#18181B]' : 'bg-white/5 text-gray-400'
-                  }`}
+                  id={`service-card-${cat.id}`}
+                  className={`h-full rounded-2xl bg-[#1E1E22] border ${cardAccentBorder} p-7 sm:p-8 shadow-lg flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 group`}
                 >
-                  {getPillarIcon(pillar.id)}
+                  <div>
+                    {/* Category Header */}
+                    <div className="flex items-center justify-between mb-5">
+                      <div className={`w-12 h-12 rounded-xl border flex items-center justify-center transition-transform group-hover:scale-105 ${cat.iconBox}`}>
+                        <Icon className="w-6 h-6" />
+                      </div>
+                      <span className={`text-[11px] font-mono font-bold px-2.5 py-1 rounded-full border ${cat.badgeBg}`}>
+                        ÁREA {cat.number}
+                      </span>
+                    </div>
+
+                    <h3
+                      className="text-xl sm:text-2xl font-bold text-white mb-2 tracking-tight group-hover:text-white transition-colors"
+                    >
+                      {cat.title}
+                    </h3>
+
+                    <p className="text-xs font-semibold text-gray-300 mb-3">
+                      {cat.tagline}
+                    </p>
+
+                    <p className="text-sm text-gray-400 mb-6 leading-relaxed">
+                      {cat.description}
+                    </p>
+
+                    {/* 4 Items List */}
+                    <div className="space-y-3 pt-4 border-t border-white/[0.06]">
+                      {cat.items.map((item) => (
+                        <div key={item.name} className="flex items-start gap-3">
+                          <CheckCircle2 className={`w-4 h-4 ${cat.accentColor} shrink-0 mt-0.5`} />
+                          <div>
+                            <p className="text-sm font-semibold text-white leading-tight">
+                              {item.name}
+                            </p>
+                            <p className="text-xs text-gray-400 mt-0.5 leading-normal">
+                              {item.desc}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-8 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs text-gray-400 font-mono">
+                    <span>Solução 100% sob medida</span>
+                    <span className={cat.accentColor}>Sem modelos prontos</span>
+                  </div>
                 </div>
-                <div className="text-left">
-                  <span className="block text-[10px] font-mono uppercase text-gray-400">
-                    Pilar {pillar.pillarNumber}
-                  </span>
-                  <span>{pillar.title}</span>
-                </div>
-              </button>
+              </ScrollReveal>
             );
           })}
         </div>
 
-        {/* Active Pillar Details Showcase */}
-        <div
-          id="active-pillar-card"
-          className={`p-6 sm:p-10 rounded-3xl bg-[#18181B] border ${getPillarBorder(
-            activePillar.accentColor
-          )} shadow-2xl relative overflow-hidden transition-all duration-300`}
-        >
-          {/* Top Banner inside Pillar */}
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-8 border-b border-white/10 mb-10">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 text-xs font-mono text-gray-300 mb-3">
-                <span>PILAR {activePillar.pillarNumber}</span>
-                <span>•</span>
-                <span className="capitalize">{activePillar.accentColor} Focus</span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">
-                {activePillar.title}
-              </h3>
-              <p className="text-[#00FFFF] text-sm sm:text-base font-medium">
-                {activePillar.tagline}
-              </p>
-              <p className="text-gray-300 text-sm mt-2 max-w-2xl">
-                {activePillar.description}
+        {/* Single Unified WhatsApp CTA for Services Section */}
+        <ScrollReveal delay={0.3}>
+          <div className="p-6 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-6 max-w-4xl mx-auto shadow-sm">
+            <div className="text-center sm:text-left">
+              <h4 className="text-lg font-bold text-white">
+                Precisa de um projeto sob medida para sua empresa?
+              </h4>
+              <p className="text-xs sm:text-sm text-gray-300 mt-1">
+                Fale diretamente com o João pelo WhatsApp e receba uma orientação transparente para o seu momento.
               </p>
             </div>
 
             <a
-              href={`https://wa.me/${AGENCY_INFO.phoneRaw}?text=${encodeURIComponent(
-                `Olá João! Gostaria de conversar sobre os serviços do Pilar de ${activePillar.title} da Arte do Algoritmo.`
-              )}`}
+              href={AGENCY_INFO.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm border border-white/15 transition-all duration-200 shrink-0"
+              id="services-whatsapp-cta"
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#00FFFF] to-[#00D2FF] text-[#141416] font-bold text-sm shadow-[0_0_20px_rgba(0,255,255,0.25)] hover:shadow-[0_0_30px_rgba(0,255,255,0.45)] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shrink-0"
             >
-              <MessageCircle className="w-4 h-4 text-[#00FFFF]" />
-              <span>Solicitar Orçamento deste Pilar</span>
+              <MessageCircle className="w-4 h-4 fill-current" />
+              <span>Fale no WhatsApp</span>
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>
-
-          {/* 4 Service Cards Grid inside this pillar */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {activePillar.services.map((service, index) => (
-              <div
-                key={service.name}
-                className="p-6 rounded-2xl bg-white/[0.02] hover:bg-white/[0.04] border border-white/5 hover:border-white/10 transition-all duration-200 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <h4 className="text-lg font-bold text-white tracking-tight">
-                      {service.name}
-                    </h4>
-                    <span className="text-xs font-mono text-gray-400">
-                      0{index + 1}
-                    </span>
-                  </div>
-
-                  <p className="text-sm text-gray-300 mb-5 leading-relaxed">
-                    {service.description}
-                  </p>
-
-                  <div className="space-y-2">
-                    {service.features.map((feature) => (
-                      <div key={feature} className="flex items-start gap-2.5 text-xs text-gray-300">
-                        <Check className="w-4 h-4 text-[#00FFFF] shrink-0 mt-0.5" />
-                        <span>{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between">
-                  <span className="text-[11px] text-gray-400 font-mono">
-                    Entrega profissional
-                  </span>
-                  <a
-                    href={`https://wa.me/${AGENCY_INFO.phoneRaw}?text=${encodeURIComponent(
-                      `Olá! Tenho interesse no serviço de ${service.name} da Arte do Algoritmo.`
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-semibold text-[#00FFFF] hover:underline inline-flex items-center gap-1"
-                  >
-                    <span>Quero este serviço</span>
-                    <ArrowRight className="w-3 h-3" />
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

@@ -3,8 +3,10 @@ import { AGENCY_INFO } from '../data/agencyData';
 import { MessageCircle, Instagram, Facebook, MapPin, ArrowUp } from 'lucide-react';
 import { Logo } from './Logo';
 
+import { PageView } from './Navbar';
+
 interface FooterProps {
-  onNavigate?: (page: 'home' | 'projetos' | 'sobre', anchor?: string) => void;
+  onNavigate?: (page: PageView, anchor?: string) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
@@ -12,7 +14,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleLinkClick = (page: 'home' | 'projetos' | 'sobre', anchor?: string) => {
+  const handleLinkClick = (page: PageView, anchor?: string) => {
     if (onNavigate) {
       onNavigate(page, anchor);
     } else {
@@ -30,9 +32,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   return (
     <footer className="bg-[#121214] border-t border-white/10 text-gray-400 text-xs sm:text-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-          {/* Brand and Location */}
-          <div className="lg:col-span-2 space-y-4">
+        {/* 4 Balanced Columns */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          {/* COLUMN 1: Brand Summary */}
+          <div className="space-y-4">
             <button
               onClick={() => handleLinkClick('home', 'inicio')}
               className="inline-block transition-transform hover:opacity-95 text-left"
@@ -41,20 +44,20 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <Logo id="footer-logo-image" size="lg" />
             </button>
             <p className="text-gray-400 text-xs sm:text-sm leading-relaxed max-w-sm">
-              Design, tecnologia e estratégia para fortalecer sua presença digital. Desenvolvimento de sites sob medida, identidades visuais memoráveis e foco em resultados reais.
+              Design, tecnologia e estratégia para fortalecer sua presença digital. Desenvolvimento de sites sob medida, identidades visuais marcantes e foco em resultados reais.
             </p>
             <div className="flex items-center gap-2 text-xs font-mono text-gray-400">
               <MapPin className="w-3.5 h-3.5 text-[#00FFFF]" />
-              <span>{AGENCY_INFO.city}, {AGENCY_INFO.state} • Atendimento para todo o Brasil</span>
+              <span>{AGENCY_INFO.city}, {AGENCY_INFO.state} • Atendimento em todo o Brasil</span>
             </div>
           </div>
 
-          {/* Group 1: NAVEGAÇÃO */}
+          {/* COLUMN 2: Navigation */}
           <div className="space-y-3">
             <p className="text-white font-bold text-xs uppercase font-mono tracking-wider">
               Navegação
             </p>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-2 text-xs sm:text-sm">
               <li>
                 <button
                   type="button"
@@ -79,7 +82,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => handleLinkClick('projetos')}
                   className="hover:text-white transition-colors text-left"
                 >
-                  Projetos
+                  Portfólio
                 </button>
               </li>
               <li>
@@ -94,12 +97,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </ul>
           </div>
 
-          {/* Group 2: SERVIÇOS */}
+          {/* COLUMN 3: Main Services */}
           <div className="space-y-3">
             <p className="text-white font-bold text-xs uppercase font-mono tracking-wider">
-              Serviços
+              Principais Serviços
             </p>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-2 text-xs sm:text-sm">
               <li>
                 <button
                   type="button"
@@ -133,27 +136,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => handleLinkClick('home', 'servicos')}
                   className="hover:text-white transition-colors text-left"
                 >
-                  Google Meu Negócio
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => handleLinkClick('home', 'servicos')}
-                  className="hover:text-white transition-colors text-left"
-                >
-                  Design para Redes Sociais
+                  Presença & Marketing Digital
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Group 3: CONTATO */}
+          {/* COLUMN 4: Direct Contact */}
           <div className="space-y-3">
             <p className="text-white font-bold text-xs uppercase font-mono tracking-wider">
-              Contato
+              Contato Direto
             </p>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-2 text-xs sm:text-sm">
               <li>
                 <a
                   href={AGENCY_INFO.whatsappUrl}
@@ -161,7 +155,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-white hover:text-[#00FFFF] transition-colors"
                 >
-                  <MessageCircle className="w-4 h-4 text-emerald-400" />
+                  <MessageCircle className="w-4 h-4 text-emerald-400 shrink-0" />
                   <span>{AGENCY_INFO.phoneDisplay}</span>
                 </a>
               </li>
@@ -172,7 +166,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 hover:text-[#E71870] transition-colors"
                 >
-                  <Instagram className="w-4 h-4 text-[#E71870]" />
+                  <Instagram className="w-4 h-4 text-[#E71870] shrink-0" />
                   <span>{AGENCY_INFO.instagramHandle}</span>
                 </a>
               </li>
@@ -183,13 +177,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 hover:text-[#00FFFF] transition-colors"
                 >
-                  <Facebook className="w-4 h-4 text-[#00FFFF]" />
+                  <Facebook className="w-4 h-4 text-[#00FFFF] shrink-0" />
                   <span>{AGENCY_INFO.facebookHandle}</span>
                 </a>
               </li>
             </ul>
 
-            <div className="pt-3">
+            <div className="pt-4">
               <button
                 onClick={scrollToTop}
                 className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition-colors"
@@ -207,7 +201,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             &copy; {new Date().getFullYear()} Arte do Algoritmo. Todos os direitos reservados.
           </p>
           <p className="flex items-center gap-1.5">
-            <span>Desenvolvido com carinho e precisão em Salvador, Bahia</span>
+            <span>Desenvolvido com design e precisão em Salvador, Bahia</span>
           </p>
         </div>
       </div>

@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
-import { Sparkles, Layers, Globe, Palette, MessageSquare, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { Sparkles, Layers, Globe, Palette, FileImage, MessageSquare, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { FeaturedCaseStudy } from './FeaturedCaseStudy';
-import { WebsiteGallery } from './WebsiteGallery';
+import { Mob3lPortfolioCard } from './Mob3lPortfolioCard';
 import { GraphicDesignPortfolio } from './GraphicDesignPortfolio';
 import { SocialMediaPack } from './SocialMediaPack';
 import { AGENCY_INFO } from '../data/agencyData';
+import { PageView } from './Navbar';
 
-export const ProjectsPage: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState<'todos' | 'web' | 'branding' | 'social'>('todos');
+type PortfolioCategory = 'todos' | 'sites' | 'identidade' | 'design-grafico' | 'redes-sociais';
+
+interface ProjectsPageProps {
+  onNavigate?: (page: PageView, anchor?: string) => void;
+}
+
+export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
+  const [activeFilter, setActiveFilter] = useState<PortfolioCategory>('todos');
 
   return (
     <div className="pt-28 pb-24 min-h-screen bg-[#272727] text-white">
@@ -24,15 +31,15 @@ export const ProjectsPage: React.FC = () => {
           </div>
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
-            Nossos Projetos & Criações
+            Portfólio & Projetos
           </h1>
 
           <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed mb-10">
-            Conheça nossa seleção de plataformas web sob medida, identidades visuais marcantes, redesigns e peças de comunicação digital desenvolvidas com rigor estético e técnico.
+            Conheça nossa seleção de plataformas web sob medida, identidades visuais marcantes, materiais corporativos e peças para redes sociais desenvolvidas com rigor estético e técnico.
           </p>
 
-          {/* Quick Filter Tabs */}
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 max-w-2xl mx-auto">
+          {/* Quick Filter Tabs matching requested categories */}
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 max-w-3xl mx-auto">
             <button
               onClick={() => setActiveFilter('todos')}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
@@ -42,43 +49,55 @@ export const ProjectsPage: React.FC = () => {
               }`}
             >
               <Layers className="w-4 h-4" />
-              <span>Todos os Projetos</span>
+              <span>Todos</span>
             </button>
 
             <button
-              onClick={() => setActiveFilter('web')}
+              onClick={() => setActiveFilter('sites')}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
-                activeFilter === 'web'
+                activeFilter === 'sites'
                   ? 'bg-gradient-to-r from-[#00FFFF] to-[#00D2FF] text-[#18181B] shadow-[0_0_20px_rgba(0,255,255,0.3)]'
                   : 'bg-white/5 text-gray-300 hover:text-white hover:bg-white/10 border border-white/5'
               }`}
             >
               <Globe className="w-4 h-4" />
-              <span>Websites & Aplicações</span>
+              <span>Sites</span>
             </button>
 
             <button
-              onClick={() => setActiveFilter('branding')}
+              onClick={() => setActiveFilter('identidade')}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
-                activeFilter === 'branding'
+                activeFilter === 'identidade'
                   ? 'bg-gradient-to-r from-[#00FFFF] to-[#00D2FF] text-[#18181B] shadow-[0_0_20px_rgba(0,255,255,0.3)]'
                   : 'bg-white/5 text-gray-300 hover:text-white hover:bg-white/10 border border-white/5'
               }`}
             >
               <Palette className="w-4 h-4" />
-              <span>Identidade & Branding</span>
+              <span>Identidade Visual</span>
             </button>
 
             <button
-              onClick={() => setActiveFilter('social')}
+              onClick={() => setActiveFilter('design-grafico')}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
-                activeFilter === 'social'
+                activeFilter === 'design-grafico'
+                  ? 'bg-gradient-to-r from-[#00FFFF] to-[#00D2FF] text-[#18181B] shadow-[0_0_20px_rgba(0,255,255,0.3)]'
+                  : 'bg-white/5 text-gray-300 hover:text-white hover:bg-white/10 border border-white/5'
+              }`}
+            >
+              <FileImage className="w-4 h-4" />
+              <span>Design Gráfico</span>
+            </button>
+
+            <button
+              onClick={() => setActiveFilter('redes-sociais')}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                activeFilter === 'redes-sociais'
                   ? 'bg-gradient-to-r from-[#00FFFF] to-[#00D2FF] text-[#18181B] shadow-[0_0_20px_rgba(0,255,255,0.3)]'
                   : 'bg-white/5 text-gray-300 hover:text-white hover:bg-white/10 border border-white/5'
               }`}
             >
               <MessageSquare className="w-4 h-4" />
-              <span>Redes Sociais & Peças</span>
+              <span>Redes Sociais</span>
             </button>
           </div>
         </div>
@@ -86,29 +105,31 @@ export const ProjectsPage: React.FC = () => {
 
       {/* Main Content Areas based on Filter */}
       <main className="space-y-12">
-        {/* Flagship Case Study: 01S Mobilidade */}
-        {(activeFilter === 'todos' || activeFilter === 'web' || activeFilter === 'branding') && (
-          <div>
-            <FeaturedCaseStudy />
+        {/* Flagship Case Study: 01S Mobilidade (Visible on Todos, Sites, or Identidade) */}
+        {(activeFilter === 'todos' || activeFilter === 'sites' || activeFilter === 'identidade') && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <FeaturedCaseStudy onNavigate={onNavigate} />
           </div>
         )}
 
-        {/* Websites Gallery */}
-        {(activeFilter === 'todos' || activeFilter === 'web') && (
-          <div>
-            <WebsiteGallery />
+        {/* Level 2 Portfolio Card: MOB3L (Visible across Todos, Sites, Identidade) */}
+        {(activeFilter === 'todos' ||
+          activeFilter === 'sites' ||
+          activeFilter === 'identidade') && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Mob3lPortfolioCard activeFilter={activeFilter} onNavigate={onNavigate} />
           </div>
         )}
 
         {/* Graphic Design & Visual Identities */}
-        {(activeFilter === 'todos' || activeFilter === 'branding') && (
+        {(activeFilter === 'todos' || activeFilter === 'identidade' || activeFilter === 'design-grafico') && (
           <div>
             <GraphicDesignPortfolio />
           </div>
         )}
 
         {/* Social Media Designs Pack */}
-        {(activeFilter === 'todos' || activeFilter === 'social') && (
+        {(activeFilter === 'todos' || activeFilter === 'redes-sociais') && (
           <div>
             <SocialMediaPack />
           </div>

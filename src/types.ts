@@ -17,16 +17,26 @@ export interface WebsiteProject {
   title: string;
   category: 'SITE INSTITUCIONAL' | 'LANDING PAGE' | 'LOJA VIRTUAL' | 'SITE PERSONALIZADO';
   niche: string;
+  segment?: string;
+  type?: string;
+  statusBadge: string;
+  isFlagship?: boolean;
+  year: string;
   description: string;
+  deliverables?: string[];
   tags: string[];
   client: string;
-  year: string;
-  aspectRatio?: string;
+  fullScreenshotUrl?: string;
+  logoUrl?: string;
+  altText: string;
   liveUrl?: string;
-  isFlagship?: boolean;
+  hasLiveLink?: boolean;
+  attachedTestimonial?: {
+    name: string;
+    text: string;
+  };
   sectionsPreview?: string[];
-  deliverables?: string[];
-  fullHeightPreview: {
+  fullHeightPreview?: {
     heroHeading: string;
     heroSub: string;
     themeColor: string;
@@ -44,25 +54,30 @@ export interface GraphicDesignProject {
   id: string;
   title: string;
   category: string;
-  classification: 'PROJETO COMERCIAL' | 'ESTUDO VISUAL' | 'CONCEITO';
+  classification: string;
   description: string;
   deliverables: string[];
   colors: string[];
   thumbnailGradient: string;
   details: string;
+  logoUrl?: string;
+  previewUrl?: string;
+  altText?: string;
 }
 
 export interface TestimonialFeedback {
   id: string;
-  clientName: string;
-  role: string;
+  name: string;
   project: string;
-  messageText: string;
-  context: string;
-  time: string;
-  verified: boolean;
-  avatarText: string;
-  attachmentName?: string;
+  serviceType?: string;
+  text: string;
+  role?: string;
+  clientName?: string;
+  messageText?: string;
+  avatarText?: string;
+  verified?: boolean;
+  rating?: number;
+  feedbackImage?: string;
 }
 
 export interface ProcessStep {

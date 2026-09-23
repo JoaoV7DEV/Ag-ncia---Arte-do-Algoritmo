@@ -93,8 +93,8 @@ export const AboutSection: React.FC = () => {
                   <Check className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-white">Preços acessíveis e justos</h4>
-                  <p className="text-xs text-gray-400">Projetos a partir de R$ 500 para impulsionar pequenos e médios empreendedores.</p>
+                  <h4 className="text-sm font-bold text-white">Investimento transparente e sob medida</h4>
+                  <p className="text-xs text-gray-400">Projetos com escopo e cronograma claros, adaptados ao porte e ao momento do seu negócio.</p>
                 </div>
               </div>
             </div>

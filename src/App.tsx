@@ -17,19 +17,80 @@ import { Footer } from './components/Footer';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { ProjectsPage } from './components/ProjectsPage';
 import { AboutPage } from './components/AboutPage';
-
-type PageView = 'home' | 'projetos' | 'sobre';
+import { Mob3lCasePage } from './components/Mob3lCasePage';
+import { ZeroOneCasePage } from './components/ZeroOneCasePage';
+import { PageView } from './components/Navbar';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageView>('home');
+
+  // Sync document title and SEO meta description on page change
+  useEffect(() => {
+    let pageTitle = 'Arte do Algoritmo | Design e Estratégia Digital';
+    let pageDesc = 'Criação de sites de alta performance, identidades visuais marcantes e presença digital estratégica em Salvador, Bahia. Atendimento para todo o Brasil.';
+
+    if (currentPage === 'projetos') {
+      pageTitle = 'Portfólio de Projetos | Arte do Algoritmo';
+      pageDesc = 'Conheça cases reais de desenvolvimento de sites e identidades visuais criados pela Arte do Algoritmo com foco em autoridade e resultados.';
+    } else if (currentPage === 'sobre') {
+      pageTitle = 'Sobre a Agência | Arte do Algoritmo';
+      pageDesc = 'Saiba quem somos, nossa metodologia e como unimos precisão técnica, design marcante e compromisso com o crescimento do seu negócio.';
+    } else if (currentPage === 'projeto-mob3l') {
+      pageTitle = 'Case MOB3L • Identidade, Site e Comunicação | Arte do Algoritmo';
+      pageDesc = 'Case completo de desenvolvimento para a MOB3L: site institucional, identidade visual, papelaria, outdoor e estratégia para redes sociais em Três Lagoas/MS.';
+    } else if (currentPage === 'projeto-01s') {
+      pageTitle = 'Case 01S Mobilidade • Rebranding, Plataforma Web e Identidade | Arte do Algoritmo';
+      pageDesc = 'Case completo de desenvolvimento para a 01S Mobilidade Urbana: identidade visual, plataforma web institucional, materiais físicos e presença digital estratégica.';
+    }
+
+    document.title = pageTitle;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', pageDesc);
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', pageTitle);
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', pageDesc);
+  }, [currentPage]);
 
   // Sync state with URL hash
   useEffect(() => {
     const parseHash = () => {
       const hash = window.location.hash.toLowerCase();
-      if (hash.startsWith('#projetos')) {
+      const path = window.location.pathname.toLowerCase();
+      if (
+        hash.startsWith('#projetos/01s') ||
+        hash === '#01s' ||
+        hash === '#01s-mobilidade' ||
+        path === '/projetos/01s-mobilidade' ||
+        path === '/projetos/01s' ||
+        hash.startsWith('#secao-01s-')
+      ) {
+        setCurrentPage('projeto-01s');
+        if (hash.startsWith('#secao-01s-')) {
+          const sectionId = hash.replace('#', '');
+          setTimeout(() => {
+            const el = document.getElementById(sectionId);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 80);
+        }
+      } else if (
+        hash.startsWith('#projetos/mob3l') ||
+        hash === '#mob3l' ||
+        path === '/projetos/mob3l' ||
+        hash.startsWith('#secao-') ||
+        hash.startsWith('#bloco-')
+      ) {
+        setCurrentPage('projeto-mob3l');
+        if (hash.startsWith('#secao-')) {
+          const sectionId = hash.replace('#', '');
+          setTimeout(() => {
+            const el = document.getElementById(sectionId);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 80);
+        }
+      } else if (hash.startsWith('#projetos') || hash.startsWith('#portfolio') || path === '/projetos') {
         setCurrentPage('projetos');
-      } else if (hash.startsWith('#sobre')) {
+      } else if (hash.startsWith('#sobre') || path === '/sobre') {
         setCurrentPage('sobre');
       } else {
         setCurrentPage('home');
@@ -70,6 +131,24 @@ export default function App() {
     } else if (page === 'sobre') {
       window.location.hash = '#sobre';
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (page === 'projeto-mob3l') {
+      window.location.hash = '#projetos/mob3l';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (page === 'projeto-01s') {
+      if (anchor) {
+        window.location.hash = `#${anchor}`;
+        setTimeout(() => {
+          const el = document.getElementById(anchor);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }, 80);
+      } else {
+        window.location.hash = '#projetos/01s-mobilidade';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
   };
 
@@ -92,7 +171,11 @@ export default function App() {
             <ServicesSection />
 
             {/* 4. FEATURED PROJECTS PREVIEW (2-3 items + CTA to dedicated page) */}
-            <FeaturedProjectsPreview onViewAllProjects={() => handleNavigate('projetos')} />
+            <FeaturedProjectsPreview
+              onViewAllProjects={() => handleNavigate('projetos')}
+              onViewMob3lCase={() => handleNavigate('projeto-mob3l')}
+              onView01sCase={() => handleNavigate('projeto-01s')}
+            />
 
             {/* 5. ABOUT PREVIEW (Concise agency intro + CTA to dedicated page) */}
             <AboutPreview onLearnMore={() => handleNavigate('sobre')} />
@@ -108,9 +191,13 @@ export default function App() {
           </>
         )}
 
-        {currentPage === 'projetos' && <ProjectsPage />}
+        {currentPage === 'projetos' && <ProjectsPage onNavigate={handleNavigate} />}
 
         {currentPage === 'sobre' && <AboutPage />}
+
+        {currentPage === 'projeto-mob3l' && <Mob3lCasePage onNavigate={handleNavigate} />}
+
+        {currentPage === 'projeto-01s' && <ZeroOneCasePage onNavigate={handleNavigate} />}
       </main>
 
       {/* Footer with simplified navigation groups */}

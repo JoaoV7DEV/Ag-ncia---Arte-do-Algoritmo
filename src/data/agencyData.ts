@@ -16,7 +16,7 @@ export const AGENCY_INFO = {
   state: 'Bahia',
   country: 'Brasil',
   locationDisplay: 'Salvador, Bahia • Atendimento para todo o Brasil',
-  pricingNote: 'Projetos a partir de R$ 500, com soluções personalizadas conforme a necessidade do seu negócio.',
+  pricingNote: 'projetos com escopo e cronograma claros, adaptados ao porte e ao momento do seu negócio.',
 };
 
 export const BENEFITS = [
@@ -147,20 +147,35 @@ export const FLAGSHIP_PROJECT: WebsiteProject = {
   id: '01s-mobilidade',
   title: '01S Mobilidade',
   category: 'SITE INSTITUCIONAL',
-  niche: 'Mobilidade Urbana & Transporte',
-  description: 'Projeto completo de reposicionamento de marca e desenvolvimento web da MOB3L para 01S Mobilidade. Estruturação institucional com páginas dedicadas para motoristas parceiros e passageiros, gerando credibilidade e aumento expressivo de acessos validados pelo Google.',
-  tags: ['Rebranding Completo', 'Identidade Visual', 'Website Institucional', 'Páginas Motorista & Passageiro', 'SEO & Google Meu Negócio'],
-  client: '01S Mobilidade (Antiga MOB3L)',
+  type: 'Rebranding + Desenvolvimento de Site Completo',
+  statusBadge: 'Identidade Visual & Site Desenvolvidos',
+  segment: 'Mobilidade urbana e transporte de passageiros',
+  niche: 'Mobilidade urbana e transporte de passageiros',
+  client: '01S Mobilidade',
   year: '2026',
   isFlagship: true,
+  description: 'Rebranding completo e desenvolvimento de plataforma web para consolidar uma nova identidade de mobilidade urbana. O projeto incluiu criação de logotipo, paleta de cores, manual de marca e site institucional responsivo.',
   deliverables: [
-    'Transição e apresentação do Rebranding (da MOB3L para 01S Mobilidade)',
-    'Página Inicial institucional com narrativa de credibilidade e diferenciais',
-    'Página exclusiva de captação e requisitos para Motoristas Parceiros',
-    'Página exclusiva para Passageiros com fluxo de 3 passos e QR Code do App',
-    'Design responsivo mobile-first com paleta verde e laranja institucional',
-    'Otimização completa de presença e indexação no Google'
+    'Nova identidade visual e logotipo',
+    'Site institucional responsivo',
+    'Paleta de cores e manual de marca',
+    'Aplicação em materiais físicos (cartão, papelaria, uniforme, banner)'
   ],
+  tags: [
+    'Rebranding Completo',
+    'Identidade Visual',
+    'Website Institucional Responsivo',
+    'Manual de Marca',
+    'Materiais Físicos'
+  ],
+  fullScreenshotUrl: '/portfolio/sites/01s-mobilidade-completo.png',
+  logoUrl: '/portfolio/sites/01s-mobilidade-logo.png',
+  altText: 'Página inicial do site institucional da 01S Mobilidade',
+  hasLiveLink: false,
+  attachedTestimonial: {
+    name: 'Cliente: Robson',
+    text: 'João, obrigado por tudo. Você é um grande profissional. É bom saber que na minha Bahia tem gente como você, competente.'
+  },
   sectionsPreview: [
     'Página Inicial: Apresentação da marca, transição de cara nova e diferenciais de segurança',
     'Página de Motorista: Como se cadastrar, documentação exigida e vantagens financeiras',
@@ -180,7 +195,7 @@ export const FLAGSHIP_PROJECT: WebsiteProject = {
       },
       {
         type: 'rebrand',
-        title: 'Estamos de cara nova — De MOB3L para 01S Mobilidade',
+        title: 'Estamos de cara nova — Da MOB3L para 01S Mobilidade',
         description: 'Mudamos nossa marca para oferecer uma experiência ainda melhor, mantendo a mesma equipe e o mesmo coração.',
         items: ['Mesmo aplicativo', 'Mesmos motoristas', 'Mesmo atendimento', 'Mesma qualidade']
       },
@@ -214,107 +229,53 @@ export const FLAGSHIP_PROJECT: WebsiteProject = {
 export const WEBSITE_GALLERY: WebsiteProject[] = [
   FLAGSHIP_PROJECT,
   {
-    id: 'dra-camila-valente',
-    title: 'Dra. Camila Valente',
-    category: 'LANDING PAGE',
-    niche: 'Nutrição & Saúde Integrativa',
-    description: 'Landing page focada na conversão de novos pacientes para consultório de nutrição clínica e esportiva. Estruturada com método de atendimento, depoimentos em vídeo e agendamento direto pelo WhatsApp.',
-    tags: ['Saúde & Nutrição', 'Landing Page', 'Agendamento WhatsApp', 'Copywriting Médico'],
-    client: 'Dra. Camila Valente',
-    year: '2026',
-    fullHeightPreview: {
-      heroHeading: 'Transforme sua relação com a comida e conquiste sua melhor versão.',
-      heroSub: 'Atendimento nutricional humanizado, sem dietas restritivas malucas. Plano alimentar individualizado para sua rotina.',
-      themeColor: '#1c241e',
-      accentColor: '#10b981',
-      sections: [
-        { type: 'hero', title: 'Nutrição Clínica & Performance', description: 'Planos alimentares adaptados à rotina real de quem trabalha e treina.' },
-        { type: 'method', title: 'O Método em 4 Etapas', items: ['Avaliação Bioimpedância', 'Plano 100% Personalizado', 'Acompanhamento por App', 'Ajustes Quinzenais'] },
-        { type: 'cta', title: 'Agende sua Consulta pelo WhatsApp', description: 'Vagas limitadas para início este mês com suporte direto.' }
-      ]
-    }
-  },
-  {
-    id: 'silva-castro-adv',
-    title: 'Silva & Castro Advogados',
+    id: 'mob3l',
+    title: 'MOB3L',
     category: 'SITE INSTITUCIONAL',
-    niche: 'Advocacia Empresarial & Tributária',
-    description: 'Site institucional corporativo transmitindo sobriedade, segurança jurídica e tradição. Arquitetura estruturada por áreas de atuação e canal confidencial de consulta prévia.',
-    tags: ['Direito & Advocacia', 'Site Institucional', 'Identidade Corporativa', 'Canal de Contato'],
-    client: 'Silva & Castro Advogados Associados',
+    type: 'Site Institucional',
+    statusBadge: 'Projeto Ativo',
+    segment: 'Mobilidade urbana, Três Lagoas/MS',
+    niche: 'Mobilidade urbana, Três Lagoas/MS',
+    client: 'MOB3L',
     year: '2025',
+    isFlagship: false,
+    description: 'Desenvolvimento completo do site institucional e identidade digital para aplicativo de mobilidade urbana, incluindo páginas para passageiros e motoristas parceiros.',
+    deliverables: [
+      'Site institucional completo',
+      'Identidade digital para aplicativo',
+      'Página para passageiros com recursos do app',
+      'Página para motoristas com requisitos e cadastro'
+    ],
+    tags: [
+      'Site Institucional',
+      'Identidade Digital',
+      'Mobilidade Urbana',
+      'Três Lagoas/MS',
+      'Passageiros & Motoristas'
+    ],
+    fullScreenshotUrl: '/portfolio/sites/mob3l-completo.png',
+    logoUrl: '/portfolio/sites/mob3l-logo.png',
+    altText: 'Página inicial do site institucional da MOB3L em Três Lagoas/MS',
+    liveUrl: 'https://mob3l.com.br',
+    hasLiveLink: true,
+    attachedTestimonial: {
+      name: 'Cliente: Junior',
+      text: 'O Google mandou um e-mail parabenizando os acessos, em menos de 1 mês tantas views lá. Seu trabalho é muito profissional, João! Meu irmão é da área e elogiou pra caramba! Parabéns pelo trabalho, ficou excelente, muito profissional.'
+    },
+    sectionsPreview: [
+      'Página Inicial: Apresentação do app de mobilidade e chamada para ação',
+      'Página de Motoristas: Informações sobre requisitos e ganhos',
+      'Página de Passageiros: Benefícios, facilidade de uso e suporte'
+    ],
     fullHeightPreview: {
-      heroHeading: 'Segurança jurídica e estratégia para proteger e expandir seu patrimônio.',
-      heroSub: 'Assessoria jurídica empresarial, compliance e direito tributário com foco em resultados sustentáveis.',
-      themeColor: '#1a1f2c',
-      accentColor: '#38bdf8',
+      heroHeading: 'Mobilidade com segurança e rapidez em Três Lagoas.',
+      heroSub: 'O aplicativo de mobilidade urbana pensado para conectar passageiros e motoristas com confiança e agilidade.',
+      themeColor: '#18181B',
+      accentColor: '#EAB308',
       sections: [
-        { type: 'hero', title: 'Advocacia de Precisão Empresarial', description: 'Mais de 15 anos de atuação defendendo interesses corporativos com ética.' },
-        { type: 'areas', title: 'Áreas de Atuação', items: ['Direito Tributário', 'Contratos Empresariais', 'Recuperação de Créditos', 'Direito Trabalhista Patronal'] },
-        { type: 'partners', title: 'Sócios & Equipe Especializada', description: 'Corpo jurídico formado pelas principais instituições de direito.' }
-      ]
-    }
-  },
-  {
-    id: 'pet-amor-vet',
-    title: 'Pet & Amor Clínica Veterinária',
-    category: 'SITE INSTITUCIONAL',
-    niche: 'Saúde Animal & Centro de Estética Pet',
-    description: 'Site acolhedor e informativo com apresentação da infraestrutura clínica 24 horas, especialidades cirúrgicas, hotelzinho e agendamento rápido de banho e tosa.',
-    tags: ['Clínica Veterinária', 'Site Institucional', 'Agendamento Fácil', 'Design Acolhedor'],
-    client: 'Pet & Amor Veterinária',
-    year: '2025',
-    fullHeightPreview: {
-      heroHeading: 'O cuidado e a atenção médica que seu melhor amigo merece.',
-      heroSub: 'Atendimento emergencial 24h, consultas preventivas, vacinação e centro de estética com carinho e responsabilidade.',
-      themeColor: '#241a24',
-      accentColor: '#f43f5e',
-      sections: [
-        { type: 'hero', title: 'Hospital Veterinário 24 Horas', description: 'Equipe de plantão e UTI veterinária completa para socorrer seu pet.' },
-        { type: 'services', title: 'Nossos Cuidados', items: ['Consultas e Vacinas', 'Cirurgias Especializadas', 'Exames Laboratoriais', 'Banho & Tosa com Câmera'] },
-        { type: 'booking', title: 'Agende um Horário', description: 'Confirmação rápida pelo WhatsApp da recepção.' }
-      ]
-    }
-  },
-  {
-    id: 'trattoria-bella-vista',
-    title: 'Trattoria Bella Vista',
-    category: 'LANDING PAGE',
-    niche: 'Gastronomia & Restaurante',
-    description: 'Página visual rica para restaurante italiano contemporâneo. Integração de cardápio digital por QR code, fotos imersivas dos pratos assinados pelo chef e sistema de reservas.',
-    tags: ['Gastronomia', 'Cardápio Digital', 'Reservas de Mesas', 'Experiência Visual'],
-    client: 'Trattoria Bella Vista',
-    year: '2025',
-    fullHeightPreview: {
-      heroHeading: 'A verdadeira alma da culinária italiana artesanal.',
-      heroSub: 'Massas frescas preparadas diariamente, vinhos selecionados e um ambiente acolhedor para momentos inesquecíveis.',
-      themeColor: '#221915',
-      accentColor: '#f59e0b',
-      sections: [
-        { type: 'hero', title: 'Trattoria Artesanal Contemporânea', description: 'Tradição italiana trazida com ingredientes frescos e amor.' },
-        { type: 'menu', title: 'Pratos em Destaque', items: ['Tagliolini al Tartufo', 'Ossobuco Tradizionale', 'Risotto ai Funghi Porcini', 'Tiramisù Clássico'] },
-        { type: 'reservations', title: 'Reserve sua Mesa Online', description: 'Garanta seu lugar para almoço executivo ou jantar especial.' }
-      ]
-    }
-  },
-  {
-    id: 'solar-prime-bahia',
-    title: 'Solar Prime Bahia',
-    category: 'LANDING PAGE',
-    niche: 'Energia Solar Fotovoltaica',
-    description: 'Landing page focada em captação de leads residenciais e comerciais interessados em reduzir até 95% na conta de luz. Inclui simulador visual de economia e cálculo prévio.',
-    tags: ['Energia Solar', 'Captação de Leads', 'Simulador de Economia', 'Alta Conversão'],
-    client: 'Solar Prime Bahia',
-    year: '2026',
-    fullHeightPreview: {
-      heroHeading: 'Reduza em até 95% sua conta de luz com energia solar inteligente.',
-      heroSub: 'Projetos completos com engenharia própria, homologação na concessionária e garantia de 25 anos nos painéis solares.',
-      themeColor: '#19262b',
-      accentColor: '#00FFFF',
-      sections: [
-        { type: 'hero', title: 'Energia Limpa & Economia Real', description: 'Investimento com retorno garantido e valorização do seu imóvel.' },
-        { type: 'calculator', title: 'Simule sua Economia Mensal', items: ['Conta de R$ 500 -> Pague ~R$ 60', 'Conta de R$ 1.200 -> Pague ~R$ 95', 'Financiamento que se paga com a economia'] },
-        { type: 'contact', title: 'Solicite um Estudo Gratuito', description: 'Engenheiro analisa sua fatura sem compromisso pelo WhatsApp.' }
+        { type: 'hero', title: 'MOB3L - Seu App de Mobilidade', description: 'Viagens acessíveis e motoristas capacitados para você se locomover com tranquilidade.' },
+        { type: 'services', title: 'Para Passageiros e Motoristas', items: ['Corridas rápidas', 'Tarifas transparentes', 'Suporte dedicado', 'App fácil de usar'] },
+        { type: 'cta', title: 'Baixe o Aplicativo', description: 'Disponível para Android e iOS.' }
       ]
     }
   }
@@ -322,97 +283,68 @@ export const WEBSITE_GALLERY: WebsiteProject[] = [
 
 export const GRAPHIC_DESIGN_PROJECTS: GraphicDesignProject[] = [
   {
-    id: 'mob3l-rebranding',
-    title: '01S Mobilidade / MOB3L Rebranding',
-    category: 'Identidade Visual & Rebranding',
-    classification: 'PROJETO COMERCIAL',
-    description: 'Desenvolvimento do novo posicionamento de marca, redesenho de símbolo, aplicação em frotas e materiais institucionais para aplicativo de mobilidade.',
-    deliverables: ['Novo Logotipo e Símbolo', 'Manual de Identidade Visual', 'Mockups de Aplicativo', 'Comunicação da Transição da Marca'],
-    colors: ['#047857', '#F97316', '#FFFFFF', '#1F2937'],
-    thumbnailGradient: 'from-emerald-600 via-teal-700 to-orange-500',
-    details: 'Trabalho real de rebranding conduzido em Salvador para estruturar a expansão da empresa no setor de transporte de passageiros e motoristas parceiros.'
-  },
-  {
-    id: 'topioca-dona-moca',
-    title: 'Tapiocaria Dona Moça / Topioca',
-    category: 'Branding & Embalagens',
-    classification: 'PROJETO COMERCIAL',
-    description: 'Criação de identidade visual artesanal e moderna para franquia regional de tapiocas gourmets. Identidade que honra as raízes nordestinas com acabamento contemporâneo.',
-    deliverables: ['Identidade Visual Completa', 'Design de Embalagens Térmicas', 'Cardápio para Ponto de Venda', 'Aventais e Uniformes'],
-    colors: ['#D97706', '#92400E', '#FEF3C7', '#78350F'],
-    thumbnailGradient: 'from-amber-600 via-orange-600 to-yellow-500',
-    details: 'Projeto comercial com aplicação física em quiosques, sacolas kraft ecológicas e comunicação visual no Instagram.'
-  },
-  {
     id: 'social-media-pack-pro',
     title: 'Social Media Pack & Templates Estratégicos',
-    category: 'Design de Redes Sociais',
-    classification: 'PROJETO COMERCIAL',
+    category: 'Design Gráfico & Redes Sociais',
+    classification: 'Redes Sociais',
     description: 'Sistema modular de artes para feed, stories e carrosséis desenvolvido para marcas que buscam constância e sofisticação no Instagram.',
-    deliverables: ['Templates Editáveis no Figma / Canva', 'Identidade Padronizada para Destaques', 'Paleta Cromática de Conteúdo', 'Guia de Uso para Equipe Interna'],
+    deliverables: [
+      'Templates Editáveis no Figma / Canva',
+      'Identidade Padronizada para Destaques',
+      'Paleta Cromática de Conteúdo',
+      'Guia de Uso para Equipe Interna'
+    ],
     colors: ['#00FFFF', '#E71870', '#272727', '#FFFFFF'],
     thumbnailGradient: 'from-pink-600 via-purple-700 to-cyan-500',
-    details: 'Solução sob medida que permite aos clientes manterem a estética profissional do perfil sem perder tempo na criação do dia a dia.'
-  },
-  {
-    id: 'dr-felipe-rocha',
-    title: 'Dr. Felipe Rocha — Cirurgia & Medicina',
-    category: 'Branding Médico & Papelaria',
-    classification: 'ESTUDO VISUAL',
-    description: 'Estudo aprofundado de identidade visual médica refinada. Monograma exclusivo, receituários elegantes e presença digital discreta e autoritária.',
-    deliverables: ['Monograma e Tipografia', 'Receituários e Papelaria Timbrada', 'Placa de Consultório', 'Apresentação Institucional'],
-    colors: ['#0F172A', '#38BDF8', '#94A3B8', '#F8FAFC'],
-    thumbnailGradient: 'from-slate-900 via-sky-900 to-cyan-700',
-    details: 'Desenvolvido como estudo visual demonstrativo de boas práticas de design para a área da saúde de alta renda.'
-  },
-  {
-    id: 'studio-solar-bahia',
-    title: 'Studio Solar Arquitetura Sustentável',
-    category: 'Conceito de Marca & Editorial',
-    classification: 'CONCEITO',
-    description: 'Conceito exploratório para escritório de arquitetura bioclimática. Linhas puras, tipografia geométrica refinada e paleta inspirada na luz natural da Bahia.',
-    deliverables: ['Conceito de Marca', 'Diretrizes de Diagramação Editorial', 'Aplicações em Pranchas e Catálogo'],
-    colors: ['#1E293B', '#F59E0B', '#E2E8F0', '#10B981'],
-    thumbnailGradient: 'from-amber-600 via-stone-800 to-emerald-700',
-    details: 'Exercício de linguagem visual explorando a intersecção de minimalismo e elementos tropicais baianos.'
+    details: 'Solução sob medida que permite aos clientes manterem a estética profissional do perfil sem perder tempo na criação do dia a dia.',
+    altText: 'Pack de templates estratégicos para redes sociais'
   }
 ];
 
 export const REAL_TESTIMONIALS: TestimonialFeedback[] = [
   {
-    id: 'feedback-junior-mob3l',
-    clientName: 'Junior',
-    role: 'Sócio-Diretor',
-    project: '01S Mobilidade / MOB3L',
-    context: 'Mensagem após envio do comprovante de pagamento e validação dos resultados da transição da marca',
-    messageText: 'João obrigado por tudo. Vc é um grande profissional 🥹. E bom saber que na minha bahia tem gente como vc competente . Abraço! Vamos nos falando.',
-    time: '12:13',
+    id: 'feedback-robson',
+    name: 'Cliente: Robson',
+    project: '01S Mobilidade',
+    serviceType: 'Desenvolvimento de site e design',
+    text: 'João, obrigado por tudo. Você é um grande profissional. É bom saber que na minha Bahia tem gente como você, competente.',
+    avatarText: 'RB',
     verified: true,
-    avatarText: 'JN',
-    attachmentName: 'Comprovante Sicredi & Projeto MOB3L'
+    rating: 5,
+    feedbackImage: '/portfolio/feedbacks/Story 4 - Feedback Robson - Projeto 01S Mobilidade.jpg'
   },
   {
-    id: 'feedback-robson-junior-analytics',
-    clientName: 'Robson & Junior',
-    role: 'Sócios e Fundadores',
-    project: 'Website 01S Mobilidade',
-    context: 'Conversa no grupo de alinhamento de branding e performance no Google',
-    messageText: 'O Google mandou um email parabenizando os acessos em menos de 1 mês tantas views la 👏 Top. Vamos cada vez melhora-la ....e o site tem muita participação nisso. Seu trabalho é muito profissional João! Meu irmão é da área e elogiou pra caramba !! 👏👏👏',
-    time: '13:21',
+    id: 'feedback-junior',
+    name: 'Cliente: Junior',
+    project: 'MOB3L',
+    serviceType: 'Desenvolvimento de site e SEO',
+    text: 'O Google mandou um e-mail parabenizando os acessos, em menos de 1 mês tantas views lá. Seu trabalho é muito profissional, João! Meu irmão é da área e elogiou pra caramba! Parabéns pelo trabalho, ficou excelente, muito profissional.',
+    avatarText: 'JR',
     verified: true,
-    avatarText: 'RJ',
-    attachmentName: 'Métricas de Acesso Google'
+    rating: 5,
+    feedbackImage: '/portfolio/feedbacks/Story 6 - Feedback Junior - Socio - MOB3L.jpg'
   },
   {
-    id: 'feedback-paulo-site',
-    clientName: 'Paulo',
-    role: 'Cliente de Projeto Web',
-    project: 'Desenvolvimento de Novo Website',
-    context: 'Feedback após entrega da versão final do site e alinhamento de expansão de novidades',
-    messageText: 'Mas com relação ao site... Parabéns pelo trabalho João... ficou excelente... muito profissional! Uma pergunta... com relação às edições futuras, como você trabalha? Porque devemos colocar algumas novidades no lançamento... e provas sociais de parceiros e clientes...',
-    time: '10:14',
+    id: 'feedback-natan',
+    name: 'Cliente: Natan',
+    project: 'Assistência Técnica de Eletrodomésticos',
+    serviceType: 'Perfil Google Meu Negócio',
+    text: 'Tem muita gente que liga, ótimo, muito obrigado, estou trabalhando pra lhe pagar.',
+    avatarText: 'NT',
     verified: true,
-    avatarText: 'PL'
+    rating: 5,
+    feedbackImage: '/portfolio/feedbacks/Story 7 - Natan - crescimento da assistencia tecnica no Google meu negocio.jpg'
+  },
+  {
+    id: 'feedback-paulo',
+    name: 'Cliente: Paulo',
+    project: 'Site para Advogado',
+    serviceType: 'Site para Advogado',
+    text: 'Com relação ao site... Parabéns pelo trabalho João... ficou excelente... muito profissional.',
+    avatarText: 'PL',
+    verified: true,
+    rating: 5,
+    feedbackImage: '/portfolio/feedbacks/Story 5 - Feedback  - Paulo - site.jpg'
   }
 ];
 
@@ -498,7 +430,7 @@ export const FAQS: FaqItem[] = [
   },
   {
     question: 'Como funciona o orçamento do projeto?',
-    answer: 'Nossos projetos iniciam a partir de R$ 500, variando conforme a complexidade, número de páginas e recursos necessários. Trabalhamos com uma abordagem consultiva: analisamos o que você realmente precisa para não cobrar por coisas desnecessárias. O pagamento pode ser facilitado via Pix e parcelamento.'
+    answer: 'Trabalhamos com investimento sob medida: cada projeto possui escopo, entregáveis e cronograma claros, adaptados ao porte e ao momento do seu negócio, sem cobranças desnecessárias. O pagamento pode ser facilitado via Pix e parcelamento.'
   },
   {
     question: 'Vocês atendem clientes de outras cidades e estados fora da Bahia?',
